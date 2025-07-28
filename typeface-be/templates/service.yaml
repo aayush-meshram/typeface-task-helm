@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: {{ .Values.namespace }}
   name: {{ include "typeface-be.fullname" . }}
   labels:
     {{- include "typeface-be.labels" . | nindent 4 }}
