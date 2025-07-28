@@ -16,4 +16,4 @@ spec:
       nodePort: {{ .Values.service.nodePort | default 30080 }}
       {{- end }}
   selector:
-    {{- include "typeface-be.selectorLabels" . | nindent 4 }}
+    app: typeface-be
