@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "typeface-fe.fullname" . }}
+  namespace: {{ .Values.namespace }}
   labels:
     {{- include "typeface-fe.labels" . | nindent 4 }}
 spec:
