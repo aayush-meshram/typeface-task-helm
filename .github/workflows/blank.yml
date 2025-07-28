@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploying Helm Charts
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  workflow_dispatch:
+    inputs:
+        application_name:
+          description: 'Name of the application to deploy'
+          required: true
+          default: 'service-app'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: self-hosted
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Runs a set of commands using the runners shell
+      - name: "Deploying -- ${{ github.event.inputs.application_name }}"
+        run: |
+          helm upgrade --install ${{ github.event.inputs.application_name }} .\${{ github.event.inputs.application_name }}
+          echo "Deployment script finished."
