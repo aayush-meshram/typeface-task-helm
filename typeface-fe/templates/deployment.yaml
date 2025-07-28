@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "typeface-fe.fullname" . }}
   namespace: {{ .Values.namespace }}
+  name: {{ include "typeface-fe.fullname" . }}
   labels:
     {{- include "typeface-fe.labels" . | nindent 4 }}
 spec:
@@ -46,5 +46,5 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           resources:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
+            {{- toYaml .Values.resources | nindent 12 }}
+
